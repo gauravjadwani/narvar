@@ -9,8 +9,11 @@ export default class OrderWrapper {
         this.orders = [];
         this.notificationService = notificationService;
     }
-    addOrder(orderId, customerEmail, customerPhone) {
-        const order = new Order(orderId, customerEmail, customerPhone, this.notificationService);
+    // addOrder(orderId, customerEmail, customerPhone) {
+    //     const order = new Order(orderId, customerEmail, customerPhone, this.notificationService);
+    //     this.orders.push(order);
+    // }
+    addOrder(order) {
         this.orders.push(order);
     }
 
@@ -20,7 +23,7 @@ export default class OrderWrapper {
             console.log(`Order with ID ${orderId} not found.`);
             return;
         }
-        order.updateShipmentStatus(newStatus);
+        order.updateShipmentStatus(newStatus,this.notificationService);
     }
 
     getOrderById(orderId) {

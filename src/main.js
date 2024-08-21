@@ -24,19 +24,21 @@ function main(){
 
     const notificationService = new NotificationService();
     const orderWrapper = new OrderWrapper(notificationService)
-    // const order1 = new Order(1, 'customer1@arch.com', '9044297421');
-    // const order2 = new Order(2, 'customer2@arch.com', '9044297425');
+    const order1 = new Order(1, 'customer1@arch.com', '9044297421');
+    const order2 = new Order(2, 'customer2@arch.com', '9044297425');
 
 
 
 
-    orderWrapper.addOrder(1, 'customer1@arch.com', '9044297421')
-    orderWrapper.addOrder(2, 'customer2@arch.com', '9044297425')
+    orderWrapper.addOrder(order1)
+    orderWrapper.addOrder(order2)
 
-    notificationService.registerChannel(1, 'whatsapp', whatsappNotificationHandler);
-    notificationService.registerChannel(2, 'email', emailNotificationHandler);
+    notificationService.registerChannel(order1.orderId, 'whatsapp', whatsappNotificationHandler);
+    notificationService.registerChannel(order1.orderId, 'email', emailNotificationHandler);
+    notificationService.registerChannel(order2.orderId, 'email', emailNotificationHandler);
 
-    orderWrapper.updateOrderStatus(1, 'pickup_pending');
+    orderWrapper.updateOrderStatus(order1.orderId, 'pickup_pending');
+    orderWrapper.updateOrderStatus(order2.orderId, 'pickup_pending');
 
 
 

@@ -8,9 +8,9 @@ export default class Order {
         this.shipmentStatus = 'shipment_pending';
         this.lastUpdatedOn = new Date();
         this.ledger = [];
-        this.notificationService = notificationService;
+        // this.notificationService = notificationService;
     }
-    updateShipmentStatus(newStatus) {
+    updateShipmentStatus(newStatus,nf) {
 
         if (!VALID_STATUSES.includes(newStatus)) {
             console.log(`Invalid shipment status: ${newStatus}`);
@@ -26,7 +26,7 @@ export default class Order {
         this.shipmentStatus = newStatus;
         this.lastUpdatedOn = new Date();
         const o = new NotificationService()
-        o.sendNotification(this);
+        nf.sendNotification(this);
     }
 
     getledger() {
